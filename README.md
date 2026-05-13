@@ -1,9 +1,14 @@
 # cs131_project
 
 Group Member: 
+
 Jake Wang
+
 Junwen Yu
+
 Sweden Agunenye
+
+Jooahn Park
 
 ## Use Case
 
