@@ -218,3 +218,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# freshRottenPairClassModel — datasets, training runs, and model weights
+freshRottenPairClassModel/dataset/
+freshRottenPairClassModel/runs/
+freshRottenPairClassModel/yolo11n.pt
+
+# trainingDataAggregationTools — raw images, staging data, runs, and model weights
+trainingDataAggregationTools/dataset/
+trainingDataAggregationTools/formattedDataset/
+trainingDataAggregationTools/runs/
+trainingDataAggregationTools/yolo11n.pt
