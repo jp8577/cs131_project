@@ -1,34 +1,20 @@
 from ultralytics import YOLO
 import kagglehub
-import os
-import yaml
-from IPython.display import Image, display
 
-# Load dataset (without annotations) from Kaggle
-path = kagglehub.dataset_download("muhriddinmuxiddinov/fruits-and-vegetables-dataset")
+# Load a pretrained YOLOv11n model (model weights from 100 epochs trained on LVIS)
+model = YOLO("models/best.pt")
 
-# Load a pretrained YOLOv8m model (model weights)
-model = YOLO("models/yolo_fruits_and_vegetables_v1.pt")
-
-# Set confidence and iou threshold
+# Set confidence and iou (intersection on union) threshold
 conf = 0.6
 iou = 0.1
 # show_results = False
 
 # Run batched inference on a list of images
 results = model.predict(
-    source=0, show=True, conf=0.6, iou=0.1, stream=True, device="mps", half=True
+    source=0, show=True, conf=conf, iou=iou, stream=True, device="mps", half=True
 )  # return a list of Results objects
 
-# if show_results:
-#     for result in results:
-#         result.show()
-
-# create a directory to save the results
-# if not os.path.exists('Example_Results'):
-#     os.makedirs('Example_Results')
-
-# Save results and show detections
+# Save results and show detections (inference not configured for saving results or annotating bounding boxes)
 for r in results:
     # r.show()
     pass
