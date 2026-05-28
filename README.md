@@ -30,7 +30,7 @@ Currently, many facilities rely on human workers to inspect produce before it re
 - Defects such as discoloration, scratches, dents, mold, or rotten areas can be difficult to detect accurately.
 - Large processing centers may handle hundreds of thousands of items, requiring fast real-time detection.
 
-This project proposes an intelligent produce inspection system that uses cameras, edge computing, fog computing, and cloud computing to classify produce and detect defects in real time.
+This project proposes an intelligent produce inspection system that uses cameras, edge computing, and cloud computing to conduct real-time image classification and defect detection.
 
 ---
 
@@ -52,35 +52,17 @@ The edge devices are responsible for:
 
 This allows the system to respond quickly with low latency, which is important for real-time conveyor belt inspection.
 
-### Fog Layer
-
-The fog layer uses a local gateway or on-site server located near the processing area.
-
-The fog layer is responsible for:
-
-- Receiving detection data from multiple edge devices.
-- Filtering unnecessary or duplicate data.
-- Aggregating useful image and detection results.
-- Coordinating data from multiple camera angles.
-- Reducing bandwidth usage before sending data to the cloud.
-- Preventing storage and network bottlenecks.
-
-This layer acts as the middle layer between the edge devices and the cloud.
-
 ### Cloud Layer
 
-The cloud layer is hosted on AWS and is responsible for long-term storage, training, and system improvement.
+The cloud layer is rperesented by Google Cloud. We used a VM instance via the Compute Engine API that utilized a NVIDIA T4 GPU. Alongside a storage bucket, the cloud layer is collectively responsible for long-term storage, model training, and improvements on inference through hyperparameter tuning during retraining on new images of produce.
 
-The cloud layer is responsible for:
+The cloud layer is also used for:
 
 - Storing historical detection results.
-- Training a larger and more advanced model using collected data.
-- Retraining the model with new produce images over time.
-- Improving classification and defect detection accuracy.
 - Sending updated model versions back to the edge devices.
 - Supporting long-term analysis of produce quality trends.
 
-In the future, this data can help businesses identify quality problems related to suppliers, storage conditions, or transportation.
+In the future,  data can help businesses identify quality problems related to suppliers, storage conditions, or transportation.
 
 ---
 
@@ -90,12 +72,12 @@ For the final demo, we will build a proof-of-concept version of the produce insp
 
 The demo will show:
 
-- A camera capturing live images of fruits or vegetables.
-- A lightweight CNN model running on an edge device.
+- Two cameras capturing live images of fruits or vegetables.
+- Dual lightweight convolutional neural network (CNN) models (trained on YOLOv11n) running on two edge devices (NVIDIA Jetson Orin).
 - The system classifying the type of produce.
 - The system detecting whether the produce is fresh or defective.
 - A live output showing the prediction result, such as `Fresh Apple`, `Rotten Banana`, or `Defective Tomato`.
-- A cloud-hosted version of the model that represents how retraining and updates would work in the full-scale system.
+- A cloud-hosted version of the model that represents how retraining and updates on weights would work in the full-scale system.
 
 Physically, the demo can be shown by placing produce in front of the camera or moving it through a small mock conveyor setup. The camera will capture the produce, the model will process the image, and the result will be displayed in real time.
 
