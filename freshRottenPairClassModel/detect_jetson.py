@@ -1,7 +1,7 @@
 from pathlib import Path
 from ultralytics import YOLO
 
-MODEL_PATH = Path(__file__).parent / "runs/detect/train-4/weights/best.pt"
+MODEL_PATH = Path(__file__).parent / "runs/detect/train-9/weights/best.pt"
 
 model = YOLO(MODEL_PATH)
 
