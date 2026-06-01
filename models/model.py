@@ -5,13 +5,14 @@ from ultralytics import YOLO
 
 MODEL_PATH = Path(__file__).parents[1] / "runs/detect/train-9/weights/best.pt"
 
-model = YOLO("yolo_FAV.pt")
+model = YOLO(MODEL_PATH)
 
 results = model.predict(
     source=0,  # Logitech Brio 101 on /dev/video0
     show=True,
-    device=0,
-    half=False,  # Model quantized to FP16 precision
+    device=0,  # GPU found on device can be enabled with CUDA on Orin Nano or
+    # device="mps" for optimization on Apple Silicon
+    half=True,  # Model quantized to FP16 precision
     conf=0.5,  # Confidence level
     iou=0.4,  # Intersection on union threshold
     stream=True,
