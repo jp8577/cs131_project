@@ -8,7 +8,7 @@ __pycache__/
 
 # Miscellaneous I added
 .DS_Store
-configs/key.json
+configs/keys.json
 
 # Distribution / packaging
 .Python
